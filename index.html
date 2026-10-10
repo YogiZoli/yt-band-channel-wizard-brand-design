@@ -1438,8 +1438,8 @@ var PROGRAM_URL = "https://example.com/6-pillar-cohort";   // placeholder: the 6
 
   load();
   log("open", "v" + APP_VERSION + ", screen " + SCREENS[S.i] + (storageOK ? "" : ", storage not available"));
-  try{ history.replaceState({ i:S.i }, ""); }catch(e){}
   render();
+  try{ history.replaceState({ i:S.i }, ""); }catch(e){}   /* after render, so the guards have already picked the real screen */
   if(!storageOK) notify("This browser is not saving your progress (private mode, or its storage is blocked). You can keep going, but keep this tab open until you have downloaded your card.", "err");
   retryLead();
 })();
