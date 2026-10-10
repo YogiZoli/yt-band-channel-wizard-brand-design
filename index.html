@@ -356,7 +356,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
   function errText(e){
     if(e == null) return "unknown";
     var t = (e.name && e.name !== "Error" ? e.name + ": " : "") + (e.message || String(e));
-    if(e.stack){
+    if(e.stack && t.indexOf("| stack:") < 0){   /* a wrapped error already carries the stack of the first one */
       var st = String(e.stack).split("\n").map(function(l){ return l.trim().replace(/https?:\/\/[^\s)]*\//g, ""); }).filter(function(l){ return l && t.indexOf(l) < 0; }).slice(0, 5);
       if(st.length) t += " | stack: " + st.join(" < ");
     }
