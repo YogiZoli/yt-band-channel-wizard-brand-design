@@ -18,3 +18,7 @@ Everything functional: the three gates, the 13 questions, the email gate, `WEBHO
 ## Settings
 
 At the top of the last `<script>` block in `index.html`: `WEBHOOK_URL` and `PROGRAM_URL`, same as the original.
+
+## Reliability
+
+Same reliability pass as the original (v1.1.0): status line, event log with "Copy a diagnostic report" in the footer, safe saved state, PDF and download fallbacks. See the original README for the list. The log lives under the `localStorage` key `bcw_bd_state_log`.
