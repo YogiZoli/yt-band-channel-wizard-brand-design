@@ -23,17 +23,27 @@ At the top of the last `<script>` block in `index.html`: `WEBHOOK_URL` and `PROG
 
 Same reliability pass and the same detailed event log as the original (v1.2.0). See the original README for the full list of events and the ways to read the log (footer links, `?debug=1`, console). The log lives under the `localStorage` key `bcw_bd_state_log`.
 
-## Colour layer (v1.4.0): green
+## Colour palette (v1.5.0)
 
-Green is the base colour of the Brand Channel Wizard. Everything is green or blue-green. Red appears only when something failed.
+Exactly this palette and no other colour, errors included. No red, no pink, no magenta, no purple.
 
-This repo is the one that is kept. Its script is no longer identical to the original: it carries a few visual hooks.
+| Role | Colour |
+|---|---|
+| Text | `#0F172A` |
+| Muted text | `#475569` |
+| Page background | `#F5F7FA` |
+| Card surface | `#FFFFFF` |
+| Borders | `#E2E8F0` |
+| Teal, strong and tint | `#0E7490` and `#E6F4F7` |
+| Navy, strong and tint | `#1E3A8A` and `#E8EDFB` |
+| Emerald, strong and tint | `#047857` and `#E7F6F0` |
+| Amber strong, tint | `#B45309` and `#FEF3E2` |
+| Amber dark (errors and warnings) | `#92400E` on `#FEF3E2` |
 
-- **Greens** come from the design system's green scale (`tokens.v1.css`, `accent-*`): `#E4F5EA`, `#BFE8CC`, `#24A957`, `#0E8542`, `#0C6A36`, `#0C5430`. **Blue-greens** come from the Shine live scale: `#E3F7F6`, `#C4EEEC`, `#00B1B0`, `#00807F`, `#006564`.
-- **Tone rotation**: every top level block gets a tone in a fixed order, green, blue-green, mint, aqua: a background that runs from one shade into a lighter one, and a 5px accent edge. `paint()` sets `data-tone` after each render.
-- **Actions**: buttons, Copy buttons, step numbers and the "Updated" label run from `#0E8542` into `#0C6A36`. The progress bar and the top line run from green into blue-green.
-- **Updated highlight**: `flag(el)` gives a block a short green glow, then a settled state with a green ring and an "Updated" label. No animation under `prefers-reduced-motion`.
-- **Result screen**: deep green hero card (`#0E8542` into `#0C5430`) with white text.
-- **PDF**: green header and toned blocks in the same rotation.
-- **Errors**: the warm orange-red danger tokens, used only for error messages.
-- **Theme**: light only, there is no dark mode.
+- **Rotation**: content blocks take Teal, Navy, Emerald, then repeat. `paint()` sets `data-tone` (1 to 3) after each render. A block is its tint plus a 4px left border in the strong colour.
+- **Teal strong with white text**: primary buttons, Copy buttons, progress bar, step numbers, links. Headings are the text colour with a Teal underline.
+- **Updated**: `flag(el)` gives a block a short Amber glow, then a settled state with an Amber border, the Amber tint and a small "Updated" label. No animation under `prefers-reduced-motion`.
+- **Errors and warnings**: Amber dark text on the Amber tint.
+- **Result screen**: solid Teal with white text. **PDF**: Teal header and the same three tones.
+- **Theme**: light only.
+- **Back to the previous look**: the git tag `before-color-fix` marks the state before this change (the green version, v1.4.0): `git checkout before-color-fix -- index.html`.
