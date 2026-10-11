@@ -13,9 +13,8 @@
   /* Brand tokens: "Shine" palette, copied from the design-system canon (tokens.css, v3).
      Body size follows the live apps (16px). Components read role tokens only. */
   :root{
-    --primary-50:#FFE9EF; --primary-500:#E42256; --primary-600:#D91E50; --primary-700:#B3163F; --primary-800:#A3143A;
-    --live-50:#E3F7F6; --live-500:#00B1B0; --live-700:#00807F; --live-800:#006564;
-    --coral:#FF8370; --freesia:#FEC84D;
+    --primary-50:#E4F5EA; --primary-100:#BFE8CC; --primary-200:#8DD5A6; --primary-400:#24A957; --primary-500:#12A150; --primary-600:#0E8542; --primary-700:#0C6A36; --primary-800:#0C5430;
+    --live-50:#E3F7F6; --live-100:#C4EEEC; --live-500:#00B1B0; --live-700:#00807F; --live-800:#006564;
     --ink:#0E1330; --ink-2:#2A3048; --label:#4A5068; --muted-text:#666C84;
     --border-strong-c:#D5D8E3; --border-c:#E6E8F0; --surface-alt-c:#F0F1F6; --ground:#F7F8FB; --white:#FFFFFF;
     --neutral-400:#9A9FB3;
@@ -29,7 +28,7 @@
     --secondary:var(--ink); --secondary-hover:#1E2446; --secondary-foreground:#FFFFFF;
     --link:var(--live-700); --link-hover:var(--live-800); --live:var(--live-500);
     --border:var(--border-c); --border-strong:var(--border-strong-c); --input:var(--border-strong-c);
-    --ring:rgba(217,30,80,.2); --ring-solid:var(--primary-600);
+    --ring:rgba(14,133,66,.2); --ring-solid:var(--primary-600);
 
     --font-sans:"Open Sans","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
     --font-mono:"Geist Mono",ui-monospace,"SF Mono","Cascadia Mono",Menlo,monospace;
@@ -41,8 +40,8 @@
     --duration-fast:120ms; --duration-base:180ms;
     --ease-standard:cubic-bezier(.4,0,.2,1); --ease-out:cubic-bezier(0,0,.2,1); --ease-inout:cubic-bezier(.4,0,.2,1);
     --dot-grid:radial-gradient(rgba(14,19,48,.07) 1px,transparent 1px); --dot-grid-size:20px;
-    --hero-glow:radial-gradient(520px 260px at 100% 0%,rgba(255,131,112,.22),transparent 70%),
-                radial-gradient(360px 200px at 0% 100%,rgba(254,200,77,.22),transparent 70%);
+    --hero-glow:radial-gradient(520px 260px at 100% 0%,rgba(0,177,176,.22),transparent 70%),
+                radial-gradient(360px 200px at 0% 100%,rgba(36,169,87,.22),transparent 70%);
     --hairline:linear-gradient(90deg,var(--primary-600),var(--live-500));
     color-scheme:light;
   }
@@ -113,7 +112,7 @@
   .opt:focus-visible{outline:2px solid var(--ring-solid);outline-offset:2px}
   .opt[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-surface);color:var(--primary-surface-foreground);box-shadow:0 0 0 3px var(--ring)}
 
-  /* buttons: one solid fuchsia action per screen, the rest ink or outline */
+  /* buttons: green action, outline for the secondary ones */
   .btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:var(--radius-md);border:1px solid transparent;
     background:var(--primary);color:var(--primary-foreground);cursor:pointer;font-family:inherit;font-size:16px;font-weight:600;line-height:1.15;text-decoration:none;box-shadow:var(--shadow-sm);
     transition:background-color var(--duration-base) var(--ease-standard),box-shadow var(--duration-base) var(--ease-standard),transform var(--duration-fast) var(--ease-standard)}
@@ -130,7 +129,7 @@
   /* the screen's main action: pulsing halo and a light sheen */
   #next,#gotit,#pdfBtn,form .btn[type=submit]{position:relative;overflow:hidden;animation:cta-halo 2.4s var(--ease-out) infinite}
   #next::after,#gotit::after,#pdfBtn::after,form .btn[type=submit]::after{content:"";position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);animation:sheen 3.2s var(--ease-inout) infinite;pointer-events:none}
-  @keyframes cta-halo{0%{box-shadow:0 0 0 0 rgba(228,34,86,.5),0 6px 20px rgba(255,131,112,.35)}70%{box-shadow:0 0 0 14px transparent,0 6px 20px rgba(255,131,112,.35)}100%{box-shadow:0 0 0 0 transparent,0 6px 20px rgba(255,131,112,.35)}}
+  @keyframes cta-halo{0%{box-shadow:0 0 0 0 rgba(18,161,80,.5),0 6px 20px rgba(0,177,176,.35)}70%{box-shadow:0 0 0 14px transparent,0 6px 20px rgba(0,177,176,.35)}100%{box-shadow:0 0 0 0 transparent,0 6px 20px rgba(0,177,176,.35)}}
   @keyframes sheen{0%,70%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
   .nav{display:flex;gap:10px;justify-content:space-between;align-items:center;flex-wrap:wrap}
   .nav .grow{flex:1}
@@ -220,7 +219,7 @@
   .pdfhost .imgs{display:flex;gap:16px;align-items:center}
   .pdfhost .imgs img.l{width:120px;height:120px;border-radius:50%;object-fit:cover}
   .pdfhost .imgs img.bn{width:100%;border-radius:var(--radius-md);display:block}
-  .pdfhost .ctab{background:var(--primary-600);color:#FFFFFF;border-radius:var(--radius-lg);padding:18px 20px;font-size:15px;font-weight:700}
+  .pdfhost .ctab{background:linear-gradient(135deg,var(--primary-600),var(--primary-800));color:#FFFFFF;border-radius:var(--radius-lg);padding:18px 20px;font-size:15px;font-weight:700}
   .pdfhost .ctab div{font-family:var(--font-mono);font-size:12px;font-weight:400;margin-top:6px}
 
   @media (prefers-reduced-motion: reduce){
@@ -228,32 +227,33 @@
   }
 
   /* ===== Colour layer (v1.3.0) =====
-     Every block carries one brand tone, rotated in a fixed order: fuchsia, blue-green, coral, freesia.
-     Only palette colours are used. The two tints without a token are the brand coral and freesia at low opacity. */
+     Green is the base colour. Every block carries one tone, rotated in a fixed order: green, blue-green, mint, aqua.
+     Greens come from the design system's green scale, blue-greens from the live scale. Red is kept for errors only. */
   :root{
-    --primary-900:#7F0F2D; --live-900:#0B4D4C;
-    --coral-tint:rgba(255,131,112,.16); --freesia-tint:rgba(254,200,77,.22);
+    --primary-900:#0A4228; --live-900:#0B4D4C;
+    --grad-action:linear-gradient(135deg,var(--primary-600),var(--primary-700));
+    --grad-action-hover:linear-gradient(135deg,var(--primary-700),var(--primary-800));
     --shadow-lg:0 12px 28px rgba(14,19,48,.12);
   }
-  [data-tone="1"]{--tone:var(--primary-600);--tone-bg:var(--primary-50)}
-  [data-tone="2"]{--tone:var(--live-500);--tone-bg:var(--live-50)}
-  [data-tone="3"]{--tone:var(--coral);--tone-bg:var(--coral-tint)}
-  [data-tone="4"]{--tone:var(--freesia);--tone-bg:var(--freesia-tint)}
+  [data-tone="1"]{--tone:var(--primary-600);--tone-bg:var(--primary-50);--tone-bg2:var(--live-50)}
+  [data-tone="2"]{--tone:var(--live-500);--tone-bg:var(--live-50);--tone-bg2:var(--primary-50)}
+  [data-tone="3"]{--tone:var(--primary-400);--tone-bg:var(--primary-100);--tone-bg2:var(--primary-50)}
+  [data-tone="4"]{--tone:var(--live-700);--tone-bg:var(--live-100);--tone-bg2:var(--live-50)}
 
   h1{color:var(--primary)}
   .progtop{color:var(--primary-800)}
   .bar{background:var(--primary-50)}
-  .bar i{background:var(--primary)}
+  .bar i{background:linear-gradient(90deg,var(--primary-600),var(--live-500))}
 
-  #stage > .card,#stage > .band{position:relative;background:linear-gradient(var(--tone-bg),var(--tone-bg)) var(--surface);border:1px solid transparent;border-left:5px solid var(--tone)}
-  #stage > .band{background:var(--hero-glow),linear-gradient(var(--tone-bg),var(--tone-bg)) var(--surface)}
+  #stage > .card,#stage > .band{position:relative;background:linear-gradient(150deg,var(--tone-bg),var(--tone-bg2)) var(--surface);border:1px solid transparent;border-left:5px solid var(--tone)}
+  #stage > .band{background:var(--hero-glow),linear-gradient(150deg,var(--tone-bg),var(--tone-bg2)) var(--surface)}
   #stage > .card.hl{border-color:var(--primary);border-left-width:5px}
   .card .card{background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--primary)}
   .band h2{color:var(--primary)}
   .card h3,.phase h4,.md h4{color:var(--primary-700)}
   .steptag,.sechead{color:var(--primary-800)}
-  .steptag .n{background:var(--primary);color:var(--primary-foreground)}
-  .steps li::before{background:var(--primary);color:var(--primary-foreground)}
+  .steptag .n{background:var(--grad-action);color:var(--primary-foreground)}
+  .steps li::before{background:var(--grad-action);color:var(--primary-foreground)}
   .hint,.why,.chk .p,.logos figure{color:var(--label)}
   .flabel{color:var(--ink-2)}
   a,.linkbtn{color:var(--live-800)}
@@ -266,29 +266,32 @@
   .md table{background:var(--surface)}
   .tab[aria-current="true"]{color:var(--primary-700)}
   /* Copy buttons carry the strongest accent too */
-  .btn.small{background:var(--primary);color:var(--primary-foreground)}
-  .btn.small:hover{background:var(--primary-hover)}
+  .btn,.btn.small{background:var(--grad-action);color:var(--primary-foreground)}
+  .btn:hover,.btn.small:hover{background:var(--grad-action-hover)}
+  .btn.ghost,.btn.ghost:hover{background:var(--surface)}
+  .btn.ghost:hover{background:var(--primary-50);border-color:var(--primary-200)}
+  .opt[aria-pressed="true"]{background:linear-gradient(150deg,var(--primary-50),var(--live-50))}
   .btn.small.ghost{background:var(--surface);color:var(--foreground)}
 
   /* What is new: a short glow, then a settled "Updated" state (accent ring and a small label) */
   .drop{position:relative}
-  .upd{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:var(--radius-full);background:var(--primary);color:var(--primary-foreground);font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;vertical-align:1px}
+  .upd{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:var(--radius-full);background:var(--grad-action);color:var(--primary-foreground);font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;vertical-align:1px}
   .card > .upd,.drop > .upd{position:absolute;top:-11px;right:14px;margin:0;box-shadow:var(--shadow-sm)}
   #stage .card.updated,.drop.updated{box-shadow:0 0 0 2px var(--primary-600)}
   p.updated{border-left:3px solid var(--primary);padding-left:10px;border-radius:2px}
   .fresh{animation:fresh-glow 1.8s var(--ease-out) 1 both}
   .chip.fresh{animation:chip-pop .9s var(--ease-out) 1}
   @keyframes fresh-glow{
-    0%{box-shadow:0 0 0 0 rgba(228,34,86,.55),0 0 0 0 rgba(255,131,112,0)}
-    35%{box-shadow:0 0 0 6px rgba(228,34,86,.28),0 0 34px 8px rgba(255,131,112,.6)}
-    100%{box-shadow:0 0 0 2px var(--primary-600),0 0 0 0 rgba(255,131,112,0)}
+    0%{box-shadow:0 0 0 0 rgba(18,161,80,.55),0 0 0 0 rgba(0,177,176,0)}
+    35%{box-shadow:0 0 0 6px rgba(18,161,80,.28),0 0 34px 8px rgba(0,177,176,.6)}
+    100%{box-shadow:0 0 0 2px var(--primary-600),0 0 0 0 rgba(0,177,176,0)}
   }
   @keyframes chip-pop{0%{transform:scale(1)}30%{transform:scale(1.14);box-shadow:0 0 0 4px rgba(11,122,62,.25)}100%{transform:scale(1)}}
 
-  /* The result screen is the hero: solid fuchsia, white text, coral and freesia light */
+  /* The result screen is the hero: deep green, white text, blue-green light */
   #stage[data-screen="card"] > .card.hl{
-    background:radial-gradient(420px 220px at 100% 0%,rgba(255,131,112,.25),transparent 70%),radial-gradient(320px 200px at 0% 100%,rgba(254,200,77,.2),transparent 70%),var(--primary-700);
-    border:0;color:var(--primary-foreground);padding:26px 20px;box-shadow:var(--shadow-lg),0 10px 40px rgba(255,131,112,.4)}
+    background:radial-gradient(420px 220px at 100% 0%,rgba(0,177,176,.25),transparent 70%),radial-gradient(320px 200px at 0% 100%,rgba(36,169,87,.2),transparent 70%),linear-gradient(140deg,var(--primary-600),var(--primary-800));
+    border:0;color:var(--primary-foreground);padding:26px 20px;box-shadow:var(--shadow-lg),0 10px 40px rgba(0,177,176,.4)}
   #stage[data-screen="card"] > .card.hl h3{color:var(--primary-foreground);font-size:clamp(23px,6vw,30px);font-weight:800;letter-spacing:-.016em;line-height:1.2}
   #stage[data-screen="card"] > .card.hl .hint{color:var(--primary-foreground)}
   #stage[data-screen="card"] > .card.hl a,#stage[data-screen="card"] > .card.hl .linkbtn{color:var(--primary-foreground);text-decoration:underline;text-underline-offset:2px}
@@ -300,16 +303,16 @@
   #stage[data-screen="card"] > .card.hl .upd{background:var(--white);color:var(--primary-700)}
   #stage[data-screen="card"] > .card.hl p.updated{border-left-color:var(--white)}
   #stage[data-screen="card"] > .card.hl p.fresh{animation-name:fresh-glow-light;border-radius:var(--radius-sm)}
-  @keyframes cta-halo-light{0%{box-shadow:0 0 0 0 rgba(255,255,255,.6),0 6px 20px rgba(255,131,112,.45)}70%{box-shadow:0 0 0 14px transparent,0 6px 20px rgba(255,131,112,.45)}100%{box-shadow:0 0 0 0 transparent,0 6px 20px rgba(255,131,112,.45)}}
-  @keyframes fresh-glow-light{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}35%{box-shadow:0 0 0 6px rgba(255,255,255,.3),0 0 30px 6px rgba(254,200,77,.6)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+  @keyframes cta-halo-light{0%{box-shadow:0 0 0 0 rgba(255,255,255,.6),0 6px 20px rgba(0,177,176,.45)}70%{box-shadow:0 0 0 14px transparent,0 6px 20px rgba(0,177,176,.45)}100%{box-shadow:0 0 0 0 transparent,0 6px 20px rgba(0,177,176,.45)}}
+  @keyframes fresh-glow-light{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}35%{box-shadow:0 0 0 6px rgba(255,255,255,.3),0 0 30px 6px rgba(36,169,87,.6)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
 
   /* PDF: the same coloured blocks */
   .pdfhost .b{--t:var(--primary-600);--tb:var(--primary-50)}
   .pdfhost .b.t1{--t:var(--live-500);--tb:var(--live-50)}
-  .pdfhost .b.t2{--t:var(--coral);--tb:var(--coral-tint)}
-  .pdfhost .b.t3{--t:var(--freesia);--tb:var(--freesia-tint)}
-  .pdfhost .hero{background:var(--primary-700);border:0}
-  .pdfhost .hero::before{height:5px;background:linear-gradient(90deg,var(--coral),var(--freesia))}
+  .pdfhost .b.t2{--t:var(--primary-400);--tb:var(--primary-100)}
+  .pdfhost .b.t3{--t:var(--live-700);--tb:var(--live-100)}
+  .pdfhost .hero{background:linear-gradient(135deg,var(--primary-600),var(--primary-800));border:0}
+  .pdfhost .hero::before{height:5px;background:linear-gradient(90deg,var(--primary-200),var(--live-500))}
   .pdfhost .hero .k,.pdfhost .hero .t,.pdfhost .hero .m{color:var(--primary-foreground)}
   .pdfhost .sh{color:var(--primary-700)}
   .pdfhost .lab{color:var(--primary-800)}
@@ -438,7 +441,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
   var S = { i:0, vidiq:false, app:"", connected:false, lead:null, research:"", checks:{},
             a:{ lang:"English", country:"United States", color:"#17C05B" } };
   var IMG = { logo:null, banner:null };   /* memory only: never stored, never sent */
-  var APP_VERSION = "1.3.0";
+  var APP_VERSION = "1.4.0";
   var STORE_KEY = "bcw_bd_state";
   var JOB = { pdf:false };   /* what is running right now */
   var LAST = {};             /* the last file made of each kind, so it can be opened again */
