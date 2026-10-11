@@ -287,8 +287,8 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
   var VIDIQ_MCP_GUIDE = "https://vidiq.com/mcp/";
   var VIDIQ_MCP_URL = "https://mcp.vidiq.com/mcp";
   var CTA_LINE = "Next step: build this channel with a group in my 6-pillar cohort program.";
-  var CARD_TITLE = "YouTube Evergreen Organic Traffic Card";
-  var FILE_BASE = "youtube-evergreen-organic-traffic-card";
+  var CARD_TITLE = "Evergreen Traffic Card";
+  var FILE_BASE = "evergreen-traffic-card";
 
   var PHASES = [
     "Account and profile",
@@ -359,9 +359,9 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
   var Q_FIRST = 3, EMAIL_I = SCREENS.indexOf("email"), KIT_I = EMAIL_I + 1;
 
   var S = { i:0, vidiq:false, app:"", connected:false, lead:null, research:"", checks:{},
-            a:{ lang:"English", country:"United States", color:"#17C05B" } };
+            a:{ lang:"English", country:"United States", color:"#047857" } };
   var IMG = { logo:null, banner:null };   /* memory only: never stored, never sent */
-  var APP_VERSION = "1.5.0";
+  var APP_VERSION = "1.5.1";
   var STORE_KEY = "bcw_bd_state";
   var JOB = { pdf:false };   /* what is running right now */
   var LAST = {};             /* the last file made of each kind, so it can be opened again */
@@ -521,7 +521,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
     Object.keys(S.a).forEach(function(k){ if(typeof S.a[k] !== "string") S.a[k] = S.a[k] == null ? "" : String(S.a[k]); });
     if(!clean(S.a.lang)) S.a.lang = "English";
     if(!clean(S.a.country)) S.a.country = "United States";
-    if(!/^#[0-9a-f]{6}$/i.test(S.a.color || "")) S.a.color = "#17C05B";
+    if(!/^#[0-9a-f]{6}$/i.test(S.a.color || "") || /^#17c05b$/i.test(S.a.color)) S.a.color = "#047857";   /* an older saved brand colour moves to the palette */
     if(S.a.face !== "person" && S.a.face !== "brand") S.a.face = "";
     if(!S.checks || typeof S.checks !== "object") S.checks = {};
     if(typeof S.research !== "string") S.research = "";
@@ -688,7 +688,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
       a.face === "brand"
         ? "Make a simple logo mark for the brand. A monogram built from the initials of \"" + n + "\" is a good option."
         : "Option A: a clean monogram from the initials of \"" + n + "\". Option B: I will upload my photo, then make a tight head and shoulders portrait on a plain background in the brand color.",
-      "Style: " + (a.style || "Clean and minimal") + ". Main brand color: " + (a.color || "#17C05B") + ", plus one neutral.",
+      "Style: " + (a.style || "Clean and minimal") + ". Main brand color: " + (a.color || "#047857") + ", plus one neutral.",
       "Flat background, no mockup, no border, no watermark."
     ].join("\n");
   }
@@ -704,7 +704,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
       "  Line 3, small: New videos " + (a.pace || "every week"),
       "The logo or profile mark sits on the left of the text, also inside the safe area.",
       "The background fills the whole 2560 x 1440 canvas and stays calm outside the safe area: no text, no faces and no key details there.",
-      "Style: " + (a.style || "Clean and minimal") + ". Main brand color: " + (a.color || "#17C05B") + ", plus one neutral. High contrast between text and background.",
+      "Style: " + (a.style || "Clean and minimal") + ". Main brand color: " + (a.color || "#047857") + ", plus one neutral. High contrast between text and background.",
       "No extra words, no mockup, no device frame, no watermark."
     ].join("\n");
   }
@@ -828,7 +828,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
     var a = S.a, R = parseResearch(S.research), M = [];
     var none = "_Not pasted yet._";
     M.push("---");
-    M.push("card: youtube-evergreen-organic-traffic-card");
+    M.push("card: evergreen-traffic-card");
     M.push("version: 1");
     M.push("generated: " + today());
     M.push("source: " + SOURCE);
@@ -1337,7 +1337,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
     else if(q.type === "face") body = optsHtml(q.opts, a.face) + "<div id='more'" + (a.face ? "" : " hidden") + ">" + inp("name", a.face === "brand" ? "The brand name" : "Your name, as viewers should see it", a.face === "brand" ? "Studio Growth Lab" : "Anna Kovacs") + "</div>";
     else if(q.type === "market") body = "<div class='two'>" + inp("lang", "Language of your videos", "English") + inp("country", "Main country of your viewers", "United States") + "</div>";
     else if(q.type === "links") body = inp("gift", "Your free gift or opt-in page", "https://", "url") + inp("course", "Your course page", "https://", "url") + inp("site", "Your website", "https://", "url");
-    else if(q.type === "look") body = optsHtml(q.opts, a.style) + "<div class='field'><label class='flabel' for='f_color'>Your main brand color</label><div style='display:flex;gap:10px;align-items:center'><input id='f_color' type='color' value='" + esc(a.color || "#17C05B") + "'><span class='hint'>No brand color yet? Keep this one and change it later.</span></div></div>";
+    else if(q.type === "look") body = optsHtml(q.opts, a.style) + "<div class='field'><label class='flabel' for='f_color'>Your main brand color</label><div style='display:flex;gap:10px;align-items:center'><input id='f_color' type='color' value='" + esc(a.color || "#047857") + "'><span class='hint'>No brand color yet? Keep this one and change it later.</span></div></div>";
 
     var auto = q.type === "choice";
     stage.innerHTML = band("Question", n, q.title, q.why) + "<div class='card'>" + body + "<p class='formerr' id='err' role='alert' hidden></p></div>" + navHtml(auto ? "" : "Next", true);
