@@ -226,6 +226,104 @@
   @media (prefers-reduced-motion: reduce){
     *{animation:none!important;transition-duration:.01ms!important}
   }
+
+  /* ===== Colour layer (v1.3.0) =====
+     Every block carries one brand tone, rotated in a fixed order: fuchsia, blue-green, coral, freesia.
+     Only palette colours are used. The two tints without a token are the brand coral and freesia at low opacity. */
+  :root{
+    --primary-900:#7F0F2D; --live-900:#0B4D4C;
+    --coral-tint:rgba(255,131,112,.16); --freesia-tint:rgba(254,200,77,.22);
+    --shadow-lg:0 12px 28px rgba(14,19,48,.12);
+  }
+  [data-tone="1"]{--tone:var(--primary-600);--tone-bg:var(--primary-50)}
+  [data-tone="2"]{--tone:var(--live-500);--tone-bg:var(--live-50)}
+  [data-tone="3"]{--tone:var(--coral);--tone-bg:var(--coral-tint)}
+  [data-tone="4"]{--tone:var(--freesia);--tone-bg:var(--freesia-tint)}
+
+  h1{color:var(--primary)}
+  .progtop{color:var(--primary-800)}
+  .bar{background:var(--primary-50)}
+  .bar i{background:var(--primary)}
+
+  #stage > .card,#stage > .band{position:relative;background:linear-gradient(var(--tone-bg),var(--tone-bg)) var(--surface);border:1px solid transparent;border-left:5px solid var(--tone)}
+  #stage > .band{background:var(--hero-glow),linear-gradient(var(--tone-bg),var(--tone-bg)) var(--surface)}
+  #stage > .card.hl{border-color:var(--primary);border-left-width:5px}
+  .card .card{background:var(--surface);border:1px solid var(--border);border-left:5px solid var(--primary)}
+  .band h2{color:var(--primary)}
+  .card h3,.phase h4,.md h4{color:var(--primary-700)}
+  .steptag,.sechead{color:var(--primary-800)}
+  .steptag .n{background:var(--primary);color:var(--primary-foreground)}
+  .steps li::before{background:var(--primary);color:var(--primary-foreground)}
+  .hint,.why,.chk .p,.logos figure{color:var(--label)}
+  .flabel{color:var(--ink-2)}
+  a,.linkbtn{color:var(--live-800)}
+  .out,.drop,.chip{background:var(--surface)}
+  .out{border:1px solid var(--border)}
+  code,.path{background:var(--surface);border:1px solid var(--border)}
+  .chip{border:1px solid var(--border)}
+  .chip.ok{background:var(--success-surface);border-color:transparent}
+  .phase + .phase{border-top-color:rgba(14,19,48,.14)}
+  .md table{background:var(--surface)}
+  .tab[aria-current="true"]{color:var(--primary-700)}
+  /* Copy buttons carry the strongest accent too */
+  .btn.small{background:var(--primary);color:var(--primary-foreground)}
+  .btn.small:hover{background:var(--primary-hover)}
+  .btn.small.ghost{background:var(--surface);color:var(--foreground)}
+
+  /* What is new: a short glow, then a settled "Updated" state (accent ring and a small label) */
+  .drop{position:relative}
+  .upd{display:inline-block;margin-left:8px;padding:2px 8px;border-radius:var(--radius-full);background:var(--primary);color:var(--primary-foreground);font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;vertical-align:1px}
+  .card > .upd,.drop > .upd{position:absolute;top:-11px;right:14px;margin:0;box-shadow:var(--shadow-sm)}
+  #stage .card.updated,.drop.updated{box-shadow:0 0 0 2px var(--primary-600)}
+  p.updated{border-left:3px solid var(--primary);padding-left:10px;border-radius:2px}
+  .fresh{animation:fresh-glow 1.8s var(--ease-out) 1 both}
+  .chip.fresh{animation:chip-pop .9s var(--ease-out) 1}
+  @keyframes fresh-glow{
+    0%{box-shadow:0 0 0 0 rgba(228,34,86,.55),0 0 0 0 rgba(255,131,112,0)}
+    35%{box-shadow:0 0 0 6px rgba(228,34,86,.28),0 0 34px 8px rgba(255,131,112,.6)}
+    100%{box-shadow:0 0 0 2px var(--primary-600),0 0 0 0 rgba(255,131,112,0)}
+  }
+  @keyframes chip-pop{0%{transform:scale(1)}30%{transform:scale(1.14);box-shadow:0 0 0 4px rgba(11,122,62,.25)}100%{transform:scale(1)}}
+
+  /* The result screen is the hero: solid fuchsia, white text, coral and freesia light */
+  #stage[data-screen="card"] > .card.hl{
+    background:radial-gradient(420px 220px at 100% 0%,rgba(255,131,112,.25),transparent 70%),radial-gradient(320px 200px at 0% 100%,rgba(254,200,77,.2),transparent 70%),var(--primary-700);
+    border:0;color:var(--primary-foreground);padding:26px 20px;box-shadow:var(--shadow-lg),0 10px 40px rgba(255,131,112,.4)}
+  #stage[data-screen="card"] > .card.hl h3{color:var(--primary-foreground);font-size:clamp(23px,6vw,30px);font-weight:800;letter-spacing:-.016em;line-height:1.2}
+  #stage[data-screen="card"] > .card.hl .hint{color:var(--primary-foreground)}
+  #stage[data-screen="card"] > .card.hl a,#stage[data-screen="card"] > .card.hl .linkbtn{color:var(--primary-foreground);text-decoration:underline;text-underline-offset:2px}
+  #stage[data-screen="card"] > .card.hl #pdfBtn{background:var(--white);color:var(--primary-700);animation-name:cta-halo-light}
+  #stage[data-screen="card"] > .card.hl #pdfBtn:hover{background:var(--primary-50)}
+  #stage[data-screen="card"] > .card.hl .btn.ghost{background:transparent;color:var(--primary-foreground);border-color:rgba(255,255,255,.75)}
+  #stage[data-screen="card"] > .card.hl .btn.ghost:hover{background:rgba(255,255,255,.14)}
+  #stage[data-screen="card"] > .card.hl .btn:focus-visible,#stage[data-screen="card"] > .card.hl .linkbtn:focus-visible{outline-color:var(--white)}
+  #stage[data-screen="card"] > .card.hl .upd{background:var(--white);color:var(--primary-700)}
+  #stage[data-screen="card"] > .card.hl p.updated{border-left-color:var(--white)}
+  #stage[data-screen="card"] > .card.hl p.fresh{animation-name:fresh-glow-light;border-radius:var(--radius-sm)}
+  @keyframes cta-halo-light{0%{box-shadow:0 0 0 0 rgba(255,255,255,.6),0 6px 20px rgba(255,131,112,.45)}70%{box-shadow:0 0 0 14px transparent,0 6px 20px rgba(255,131,112,.45)}100%{box-shadow:0 0 0 0 transparent,0 6px 20px rgba(255,131,112,.45)}}
+  @keyframes fresh-glow-light{0%{box-shadow:0 0 0 0 rgba(255,255,255,.7)}35%{box-shadow:0 0 0 6px rgba(255,255,255,.3),0 0 30px 6px rgba(254,200,77,.6)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
+
+  /* PDF: the same coloured blocks */
+  .pdfhost .b{--t:var(--primary-600);--tb:var(--primary-50)}
+  .pdfhost .b.t1{--t:var(--live-500);--tb:var(--live-50)}
+  .pdfhost .b.t2{--t:var(--coral);--tb:var(--coral-tint)}
+  .pdfhost .b.t3{--t:var(--freesia);--tb:var(--freesia-tint)}
+  .pdfhost .hero{background:var(--primary-700);border:0}
+  .pdfhost .hero::before{height:5px;background:linear-gradient(90deg,var(--coral),var(--freesia))}
+  .pdfhost .hero .k,.pdfhost .hero .t,.pdfhost .hero .m{color:var(--primary-foreground)}
+  .pdfhost .sh{color:var(--primary-700)}
+  .pdfhost .lab{color:var(--primary-800)}
+  .pdfhost .tx,.pdfhost .box{background:var(--tb);border-left:5px solid var(--t)}
+  .pdfhost .box{border-radius:var(--radius-md);padding:10px 12px 5px}
+  .pdfhost .md table{border-left:5px solid var(--t);background:var(--white)}
+  .pdfhost .md th{background:var(--tb);color:var(--ink)}
+  .pdfhost .ci span{color:var(--label)}
+  .pdfhost .ci i{background:var(--white)}
+  .pdfhost .ci i.d{background:var(--primary-600);border-color:var(--primary-600)}
+
+  @media (prefers-reduced-motion: reduce){
+    .fresh,.chip.fresh{animation:none!important}
+  }
 </style>
 </head>
 <body>
@@ -340,7 +438,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
   var S = { i:0, vidiq:false, app:"", connected:false, lead:null, research:"", checks:{},
             a:{ lang:"English", country:"United States", color:"#17C05B" } };
   var IMG = { logo:null, banner:null };   /* memory only: never stored, never sent */
-  var APP_VERSION = "1.2.0";
+  var APP_VERSION = "1.3.0";
   var STORE_KEY = "bcw_bd_state";
   var JOB = { pdf:false };   /* what is running right now */
   var LAST = {};             /* the last file made of each kind, so it can be opened again */
@@ -879,9 +977,9 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
     }
     sh("Checklist");
     checklist().forEach(function(p, i){
-      B.push({ h:"<div class='lab'>Phase " + (i+1) + ": " + esc(p.name) + "</div>" + p.items.map(function(it){
+      B.push({ h:"<div class='lab'>Phase " + (i+1) + ": " + esc(p.name) + "</div><div class='box'>" + p.items.map(function(it){
         return "<div class='ci'><i class='" + (S.checks[it[0]] ? "d" : "") + "'></i><div>" + esc(it[1]) + "<span>" + esc(it[2]) + "</span></div></div>";
-      }).join("") });
+      }).join("") + "</div>" });
     });
     B.push({ h:"<p style='color:#666C84;font-size:11px;margin:0'>" + esc(PATH_NOTE) + "</p>" });
     B.push({ link:PROGRAM_URL, h:"<div class='ctab'>" + esc(CTA_LINE) + "<div>" + esc(PROGRAM_URL) + "</div></div>" });
@@ -945,7 +1043,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
     var doc = new window.jspdf.jsPDF({ unit:"pt", format:"a4" });
     var W = doc.internal.pageSize.getWidth(), H = doc.internal.pageSize.getHeight();
     var M = 36, CW = W - M*2, TOP = 36, BOT = H - 46, y = TOP;
-    var host = $("pdfhost"), blocks = cardBlocks(), i = 0;
+    var host = $("pdfhost"), blocks = cardBlocks(), i = 0, tone = 0;
     host.innerHTML = "";
     log("pdf-layout", "scale " + (scale || 2) + ", " + blocks.length + " parts");
 
@@ -991,7 +1089,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
       }
       var b = blocks[i++], el = document.createElement("div"), t1 = Date.now();
       var kind = b.img ? "images" : (b.link ? "program link" : (b.keep ? "heading" : "content"));
-      el.className = "b"; el.innerHTML = b.h; host.appendChild(el);
+      el.className = "b" + (b.keep || b.link || b.img || i === 1 ? "" : " t" + (tone++ % 4)); el.innerHTML = b.h; host.appendChild(el);
       if(onStep) onStep(i, blocks.length);
       return withTimeout(window.html2canvas(el, { scale:scale || 2, backgroundColor:"#ffffff", logging:false, useCORS:true }), 25000, "pdf part " + i).then(function(cv){
         if(el.parentNode) host.removeChild(el);
@@ -1056,7 +1154,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
     var h = "";
     [["pdf","PDF"],["md",".md file"]].forEach(function(k){
       var f = LAST[k[0]];
-      if(f) h += "<p class='hint'>" + k[1] + " ready, " + esc(f.size) + ". Not in your downloads? <a href='" + f.url + "' target='_blank' rel='noopener'>Open " + esc(f.name) + " in a new tab</a></p>";
+      if(f) h += "<p class='hint' data-file='" + k[0] + "'>" + k[1] + " ready, " + esc(f.size) + ". Not in your downloads? <a href='" + f.url + "' target='_blank' rel='noopener'>Open " + esc(f.name) + " in a new tab</a></p>";
     });
     return h;
   }
@@ -1071,7 +1169,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
       setTimeout(function(){ if(aEl.parentNode) aEl.parentNode.removeChild(aEl); }, 1000);
       log("download", name + ", " + LAST[kind].size);
     }catch(e){ log("download-failed", name + ": " + errText(e)); }
-    var f = $("files"); if(f) f.innerHTML = filesHtml();
+    var f = $("files"); if(f){ f.innerHTML = filesHtml(); flag(f.querySelector("[data-file='" + kind + "']")); }
   }
 
   /* ---------- lead capture ---------- */
@@ -1154,6 +1252,47 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
     if(!fromHistory){ try{ history.pushState({ i:S.i }, ""); }catch(e){} }
     window.scrollTo(0, 0);
   }
+  /* ---------- colour layer: tone rotation and the "Updated" highlight (visual only) ---------- */
+  function paint(){
+    stage.setAttribute("data-screen", SCREENS[S.i] || "");
+    var n = 0;
+    Array.prototype.forEach.call(stage.children, function(el){
+      if(el.classList && (el.classList.contains("card") || el.classList.contains("band"))) el.setAttribute("data-tone", String(n++ % 4 + 1));
+    });
+  }
+  function flag(el){
+    if(!el || !el.classList) return;
+    el.classList.remove("fresh"); void el.offsetWidth;   /* restart the glow if it is already running */
+    el.classList.add("fresh", "updated");
+    var has = false;
+    Array.prototype.forEach.call(el.children, function(c){ if(c.className === "upd") has = true; });
+    if(!has){ var tag = document.createElement("span"); tag.className = "upd"; tag.textContent = "Updated"; el.appendChild(tag); }
+    setTimeout(function(){ el.classList.remove("fresh"); el.style.animationDelay = ""; }, 3200);
+  }
+  /* a kit block counts as updated when its text differs from what this browser showed last time */
+  function sig(t){ var h = 5381, i; t = String(t); for(i = 0; i < t.length; i++) h = ((h << 5) + h + t.charCodeAt(i)) | 0; return t.length + ":" + h; }
+  function markChanged(){
+    var seen = {}, k = 0;
+    try{ seen = JSON.parse(localStorage.getItem(STORE_KEY + "_seen") || "{}") || {}; }catch(e){}
+    Array.prototype.forEach.call(stage.querySelectorAll("[data-copy]"), function(b){
+      var id = b.getAttribute("data-copy"), card = b.closest ? b.closest(".card") : null;
+      if(id === "check" || !card || COPY[id] == null) return;
+      var now = sig(COPY[id]);
+      if(seen[id] !== now){ seen[id] = now; card.style.animationDelay = (k++ * 90) + "ms"; flag(card); }
+    });
+    try{ localStorage.setItem(STORE_KEY + "_seen", JSON.stringify(seen)); }catch(e){}
+    if(k) log("highlight", k + " kit blocks marked as updated");
+  }
+  var prevFound = null;
+  function freshChips(){
+    var now = {};
+    Array.prototype.forEach.call(document.querySelectorAll("#found .chip.ok"), function(c){
+      now[c.textContent] = 1;
+      if(prevFound && !prevFound[c.textContent]) c.classList.add("fresh");
+    });
+    prevFound = now;
+  }
+
   function crash(){
     stage.innerHTML = "<div class='card hl'><h3>This screen did not load</h3><p class='hint'>" + (storageOK ? "Your answers are still saved in this browser. " : "") + "Reload the page first. If it happens again, copy the diagnostic report and send it to the person who gave you this link.</p>" +
       "<div class='nav'><button type='button' class='btn' id='crReload'>Reload the page</button><button type='button' class='btn ghost' id='crReport'>Copy the diagnostic report</button></div>" +
@@ -1193,7 +1332,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
   }
 
   function render(){
-    try{ draw(); }
+    try{ draw(); paint(); }
     catch(e){ log("render-failed", (SCREENS[S.i] || S.i) + ": " + errText(e)); try{ crash(); }catch(e2){ log("crash-screen-failed", errText(e2)); } }
   }
   function draw(){
@@ -1381,6 +1520,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
     stage.innerHTML = h;
     log("kit-shown", "name options " + nameOptions().length + ", handle options " + handleOptions().length + ", research prompt " + COPY.research.length + " characters, for " + appName());
     bindTabs(); bindCopy();
+    markChanged();
     Array.prototype.forEach.call(stage.querySelectorAll("[data-chk]"), function(c){ c.addEventListener("change", function(){ S.checks[this.dataset.chk] = this.checked; save(); log("checklist", this.dataset.chk + " = " + this.checked); }); });
     $("edit").addEventListener("click", function(){ go(Q_FIRST); });
     $("next").addEventListener("click", function(){ go(S.i + 1); });
@@ -1423,6 +1563,7 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
         log("image-ok", kind + ", " + w + " x " + h + ", " + file.type + ", " + Math.round(file.size / 1024) + " KB" + (src !== fr.result ? ", scaled down to fit " + max + " px" : "") + ", " + (Date.now() - t0) + " ms");
         notify("Image added. It stays on this device and is not kept after a reload.", "ok");
         cb();
+        var inp = $(kind + "File"); if(inp) flag(inp.parentNode);
       };
       im.src = fr.result;
     };
@@ -1450,7 +1591,8 @@ var LOG_URL = "";       // optional: every error also posts the diagnostic repor
       "<div class='drop'><label class='flabel' for='bannerFile'>Banner</label><input type='file' id='bannerFile' accept='image/*'><div id='bannerPrev'></div></div></div>" +
       "<div class='nav'><button type='button' class='btn ghost' id='back'>Back to the kit</button><button type='button' class='btn' id='next'>Next: build my card</button></div>";
     bindTabs(); previews();
-    $("research").addEventListener("input", function(){ S.research = this.value; saveSoon(); $("found").innerHTML = foundHtml(); clearTimeout(resT); resT = setTimeout(logResearch, 1500); });
+    prevFound = null; freshChips();
+    $("research").addEventListener("input", function(){ S.research = this.value; saveSoon(); $("found").innerHTML = foundHtml(); freshChips(); clearTimeout(resT); resT = setTimeout(logResearch, 1500); });
     $("logoFile").addEventListener("change", function(){ readImage(this.files[0], "logo", previews); });
     $("bannerFile").addEventListener("change", function(){ readImage(this.files[0], "banner", previews); });
     bindNav();
